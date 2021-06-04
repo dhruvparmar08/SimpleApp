@@ -1,0 +1,119 @@
+<mat-card id="register_card">
+    <mat-card-header style="justify-content: center; margin-bottom: 10px;">
+      <mat-card-title style="color: #3f51b5;"><mat-icon>person_add</mat-icon> Register Here</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="registerForm" (submit)="submit()">
+        <mat-card-content>
+            <div id="register_details">
+                <div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Name</mat-label>
+                            <input matInput type="text" name="name" placeholder="xyz abc" formControlName="name">
+                            <button mat-icon-button matSuffix><mat-icon>people</mat-icon></button>
+                            <mat-error *ngIf="!registerForm.controls.name.valid">
+                                Enter valid name    ex. xyz xyz
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>E-mail</mat-label>
+                            <input matInput type="text" name="email" placeholder="example@xyz.com" formControlName="email">
+                            <button mat-icon-button matSuffix><mat-icon>alternate_email</mat-icon></button>
+                            <mat-error *ngIf="!registerForm.controls.email.valid">
+                                <mat-error *ngIf="this.registerForm.controls.email.errors.isEmailExist">That email is already taken</mat-error>
+                                <mat-error *ngIf="this.registerForm.controls.email.errors.required || this.registerForm.controls.email.errors.pattern">Enter valid email    ex. example@xyz.com</mat-error> 
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Mobile Number</mat-label>
+                            <input matInput type="number" name="mobile" placeholder="000-000-0000" formControlName="mobile">
+                            <button mat-icon-button matSuffix><mat-icon>dialpad</mat-icon></button>
+                            <mat-error *ngIf="!registerForm.controls.mobile.valid">
+                                <mat-error *ngIf="this.registerForm.controls.mobile.errors.isMobileExist">That mobile number is already taken</mat-error>
+                                <mat-error *ngIf="this.registerForm.controls.mobile.errors.required || this.registerForm.controls.mobile.errors.pattern">Enter Valid mobile number</mat-error> 
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Select your gender</mat-label>
+                            <mat-select name="gender" formControlName="gender">
+                                <mat-option value="" disabled>Select your gender</mat-option>
+                                <mat-option value="male">Male </mat-option>
+                                <mat-option value="female">Female</mat-option>
+                                <mat-option value="other">Other</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="!registerForm.controls.gender.valid">
+                                Select Your Gender
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Address</mat-label>
+                            <textarea id="textarea" matInput name="address" formControlName="address"></textarea>
+                            <button mat-icon-button matSuffix><mat-icon>home</mat-icon></button>
+                            <mat-error *ngIf="!registerForm.controls.address.valid">
+                                Enter Valid Addres
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Password</mat-label>
+                            <input matInput [type]="visible ? 'text' : 'password'" name="password" formControlName="password">
+                            <button type="button" mat-icon-button matSuffix
+                              (click)="visible = !visible"
+                              matTooltip="Toggle Visibility">
+                              <mat-icon *ngIf="visible">
+                                visibility
+                              </mat-icon>
+                              <mat-icon *ngIf="!visible">
+                                visibility_off
+                              </mat-icon>
+                            </button>
+                            <mat-error *ngIf="!registerForm.controls.password.valid">
+                                Enter Valid Password
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Confirm Password</mat-label>
+                            <input matInput [type]="visible ? 'text' : 'password'" name="confirmpassword" formControlName="confirmpassword">
+                            <button type="button" mat-icon-button matSuffix
+                              (click)="visible = !visible"
+                              matTooltip="Toggle Visibility">
+                              <mat-icon *ngIf="visible">
+                                visibility
+                              </mat-icon>
+                              <mat-icon *ngIf="!visible">
+                                visibility_off
+                              </mat-icon>
+                            </button>
+                            <mat-error *ngIf="!registerForm.controls.confirmpassword.valid">
+                                <p *ngIf="registerForm.controls.confirmpassword.errors.required">Enter Valid Password</p>
+                                <p *ngIf="registerForm.controls.confirmpassword.errors.mismatch">Password not match</p>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div id="register_btn">
+                <button type="submit" style="width: 100px;" mat-raised-button color="primary" [disabled]="registerForm.invalid" matSuffix>
+                    <mat-icon>person_add</mat-icon> Submit
+                </button>
+                <button type="button" style="float: right; width: 100px;" mat-raised-button (click)="registerForm.reset()" matSuffix>
+                    <mat-icon>restart_alt</mat-icon> Reset
+                </button>
+            </div>
+            <span>Are you resgistered ? &nbsp; <a [routerLink]="['/auth/login']" routerLinkActive="true">Login</a> &nbsp; now.</span>
+        </mat-card-actions>
+    </form>
+</mat-card>

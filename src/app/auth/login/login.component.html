@@ -1,0 +1,88 @@
+<mat-card id="login_card">
+    <mat-card-header style="justify-content: center; margin-bottom: 10px;">
+      <mat-card-title style="color: #3f51b5;" matSuffix><mat-icon>login</mat-icon> Login Here</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div id="radio_btn">
+            <span>Login with</span> &nbsp;&nbsp;&nbsp;
+            
+            <mat-radio-group aria-label="Select an option" (change)="check($event)">
+                <mat-radio-button value="1" checked> E-mail</mat-radio-button>&nbsp;&nbsp;&nbsp;
+                <mat-radio-button value="2"> mobile</mat-radio-button>
+            </mat-radio-group>
+        </div>
+            <div id="login_details">
+                <ng-container *ngIf="enable">
+                    <form [formGroup]="login_mobile" (submit)="mobile_submit()">
+                        <div>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Mobile Number</mat-label>
+                                <input matInput type="number" name="mobile" placeholder="000-000-0000" formControlName="mobile">
+                                <button mat-icon-button matSuffix><mat-icon>dialpad</mat-icon></button>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Password</mat-label>
+                                <input matInput [type]="visible ? 'text' : 'password'" name="password" formControlName="password">
+                                <button type="button" mat-icon-button matSuffix
+                                (click)="visible = !visible"
+                                matTooltip="Toggle Visibility">
+                                <mat-icon *ngIf="visible">
+                                    visibility
+                                </mat-icon>
+                                <mat-icon *ngIf="!visible">
+                                    visibility_off
+                                </mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <button type="submit" mat-raised-button color="primary" [disabled]="!login_mobile.valid" style="width: 100%; margin-bottom: 10px;">
+                                <mat-icon>login</mat-icon> Login
+                            </button>
+                            <button type="button" mat-raised-button color="accent" style="width: 100%;" (click)="forget()">
+                                <mat-icon>password</mat-icon> forget-password</button>
+                        </div>
+                    </form>
+                </ng-container>
+                <ng-container *ngIf="!enable">
+                    <form [formGroup]="login_Form" (submit)="email_submit()">
+                        <div>
+                            <mat-form-field appearance="standard">
+                                <mat-label>E-mail</mat-label>
+                                <input matInput name="email" placeholder="example@xyz.com" formControlName="email">
+                                <button mat-icon-button matSuffix><mat-icon>alternate_email</mat-icon></button>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Password</mat-label>
+                                <input matInput [type]="visible ? 'text' : 'password'" name="password" formControlName="password">
+                                <button type="button" mat-icon-button matSuffix
+                                (click)="visible = !visible"
+                                matTooltip="Toggle Visibility">
+                                <mat-icon *ngIf="visible">
+                                    visibility
+                                </mat-icon>
+                                <mat-icon *ngIf="!visible">
+                                    visibility_off
+                                </mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <button type="submit" mat-raised-button color="primary" style="width: 100%; margin-bottom: 10px;" [disabled]="!login_Form.valid" matSuffix>
+                                <mat-icon>login</mat-icon> Login
+                            </button>
+                            <button type="button" mat-raised-button color="accent" style="width: 100%;" (click)="forget()" matSuffix>
+                                <mat-icon>password</mat-icon> forget-password</button>
+                        </div>
+                    </form>
+                </ng-container>
+            </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <span>Are you new user ? &nbsp; <a [routerLink]="['/auth/register']" routerLinkActive="true">Register</a> &nbsp; now.</span>
+    </mat-card-actions>
+</mat-card>

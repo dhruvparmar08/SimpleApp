@@ -1,0 +1,17 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+#home {
+  cursor: pointer;
+}
+
+.content {
+  overflow: auto;
+  max-height: calc(100vh - 76px);
+}

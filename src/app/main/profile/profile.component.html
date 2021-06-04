@@ -1,0 +1,75 @@
+<div>
+    <div id="register_details">
+        <mat-slide-toggle (change)="enable_edit()">Enable Editing!</mat-slide-toggle>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" matTooltip="Download your details" matTooltipPosition="right" (click)="dwnload()" mat-icon-button>
+            <mat-icon style="vertical-align: text-bottom; color: #3f51b5;">picture_as_pdf</mat-icon>
+        </button>
+    </div>
+    <div>
+        <mat-card id="register_card">
+            <form [formGroup]="editForm" (submit)="submit()">
+                <div id="content">
+                    <mat-card-header style="justify-content: center; margin-bottom: 10px;">
+                        <mat-card-title style="color: #3f51b5;"><mat-icon>person_add</mat-icon> Update Details Here</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div id="register_details">
+                            <div>
+                                <div>
+                                    <mat-form-field appearance="standard">
+                                        <mat-label>Name</mat-label>
+                                        <input matInput type="text" name="name" placeholder="xyz abc" formControlName="name" [readonly]="disable">
+                                        <button mat-icon-button matSuffix><mat-icon>people</mat-icon></button>
+                                        <mat-error *ngIf="!editForm.controls.name.valid">
+                                            Enter valid name    ex. xyz xyz
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field appearance="standard">
+                                        <mat-label>E-mail</mat-label>
+                                        <input matInput type="text" name="email" placeholder="example@xyz.com" formControlName="email" [readonly]="disable">
+                                        <button mat-icon-button matSuffix><mat-icon>alternate_email</mat-icon></button>
+                                        <mat-error *ngIf="!editForm.controls.email.valid">
+                                            <mat-error *ngIf="this.editForm.controls.email.errors.required || this.editForm.controls.email.errors.pattern">Enter valid email    ex. example@xyz.com</mat-error> 
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field appearance="standard">
+                                        <mat-label>Mobile Number</mat-label>
+                                        <input matInput type="number" name="mobile" placeholder="000-000-0000" formControlName="mobile" [readonly]="disable">
+                                        <button mat-icon-button matSuffix><mat-icon>dialpad</mat-icon></button>
+                                        <mat-error *ngIf="!editForm.controls.mobile.valid">
+                                            <mat-error *ngIf="this.editForm.controls.mobile.errors.required || this.editForm.controls.mobile.errors.pattern">Enter Valid mobile number</mat-error> 
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field appearance="standard">
+                                        <mat-label>Address</mat-label>
+                                        <textarea id="textarea" matInput name="address" formControlName="address" [readonly]="disable"></textarea>
+                                        <button mat-icon-button matSuffix><mat-icon>home</mat-icon></button>
+                                        <mat-error *ngIf="!editForm.controls.address.valid">
+                                            Enter Valid Addres
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </div>
+                <mat-card-actions>
+                    <div id="register_btn">
+                        <button type="submit" style="width: 200px;" mat-raised-button color="primary" [disabled]="editForm.invalid || disable" matSuffix>
+                            <mat-icon>person_add</mat-icon> Update
+                        </button>
+                        <button type="button" style="width: 200px; margin-top: 10px;" (click)="delete()" [disabled]="disable" mat-raised-button color="warn" matSuffix>
+                            <mat-icon>remove_circle_outline</mat-icon> Delete
+                        </button>
+                    </div>
+                </mat-card-actions>
+            </form>
+        </mat-card>
+    </div>
+</div>

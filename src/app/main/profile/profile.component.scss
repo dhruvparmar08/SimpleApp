@@ -1,0 +1,35 @@
+#register_card {
+    width: 300px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#register_details {
+    display: flex;
+    justify-content: center;
+}
+
+mat-form-field {
+    width: 200px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+#textarea {
+    resize: none;
+}
+
+#register_btn {
+    display: block;
+    text-align: center;
+}
+
+mat-icon {
+    vertical-align: middle;
+}
