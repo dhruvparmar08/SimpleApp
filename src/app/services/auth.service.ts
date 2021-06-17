@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import Swal from 'sweetalert2';  
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SocialAuthService } from "angularx-social-login";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthService {
   url;
   public spinner: NgxSpinnerService;
 
-  constructor(private http: HttpClient, private injector: Injector, private router: Router) { 
+  constructor(private http: HttpClient, private injector: Injector, private router: Router, private _auth: SocialAuthService) { 
     this.spinner = injector.get(NgxSpinnerService);
   }
 
@@ -57,8 +58,14 @@ export class AuthService {
   }
   
   logout(msg) {
-    localStorage.clear();
-    this.router.navigate(['/auth/login']);
+    if(localStorage.getItem('login_type') == "Google") {
+        this._auth.signOut();
+    }
+    setTimeout(() => {
+        sessionStorage.clear();
+        localStorage.clear();
+        this.router.navigate(['/auth/login']);
+    }, 3000);
   }
 
   API(method, url, data, withToken?, isform?) {
@@ -87,14 +94,12 @@ export class AuthService {
               resolve({ success: true, data: data });
             } else if (data.success === false) {
                 this.alertPopUp('error', data.message);
-                setTimeout(() => {
-                    this.logout(data.message);
-                }, 3000);
-            } else if (data.message === 'No token provided' || data.message === 'Token invalid') {
-                this.alertPopUp('error', data.message);
-                setTimeout(() => {
-                    this.logout(data.message);
-                }, 3000);
+
+                if (data.message === 'No token provided' || data.message === 'Token invalid') {
+                    setTimeout(() => {
+                        this.logout(data.message);
+                    }, 3000);
+                }
             } else {
                 console.log('first');
                 // this.hideloader();
@@ -108,23 +113,21 @@ export class AuthService {
               resolve(error);
           });
         } else if (method === 'post') {
-
+            this.showloader();
             this.http.post(this.url, data, { headers }).subscribe((data: any) => {
                 this.hideloader();
                 if (data.success) {
                     resolve({ success: true, data: data });
                 } else if (data.success === false) {
+                    resolve({ success: false, data: data });
                     this.alertPopUp('error', data.message);
-                    setTimeout(() => {
-                        this.logout(data.message);
-                    }, 3000);
-                } else if (data.message === 'No token provided' || data.message === 'Token invalid') {
-                    this.alertPopUp('error', data.message);
-                    setTimeout(() => {
-                        this.logout(data.message);
-                    }, 3000);
+
+                    if (data.message === 'No token provided' || data.message === 'Token invalid') {
+                        setTimeout(() => {
+                            this.logout(data.message);
+                        }, 3000);
+                    }
                 } else {
-                    // console.log("invalid");
                     resolve({ success: false, data: data });
                 }
             }, error => {
@@ -140,13 +143,13 @@ export class AuthService {
                     this.alertPopUp('success', data.message);
                       resolve({ success: true, data: data });
                 } else if (data.success === false) {
-                    this.logout(data.message);
-
-                } else if (data.message === 'No token provided' || data.message === 'Token invalid') {
                     this.alertPopUp('error', data.message);
-                    setTimeout(() => {
-                        this.logout(data.message);
-                    }, 3000);
+
+                    if (data.message === 'No token provided' || data.message === 'Token invalid') {
+                        setTimeout(() => {
+                            this.logout(data.message);
+                        }, 3000);
+                    }
                 } else {
                     resolve({ success: false, data: data });
                 }
@@ -162,19 +165,14 @@ export class AuthService {
                 if (data.success === true) {
                     this.alertPopUp('success', data.message);
                     resolve({ success: true, data: data });
-                    setTimeout(() => {
-                        this.logout(data.message);
-                    }, 3000);
                 } else if (data.success === false) {
                     this.alertPopUp('error', data.message);
-                    setTimeout(() => {
-                        this.logout(data.message);
-                    }, 3000);
-                } else if (data.message === 'No token provided' || data.message === 'Token invalid') {
-                    this.alertPopUp('error', data.message);
-                    setTimeout(() => {
-                        this.logout(data.message);
-                    }, 3000);
+                    
+                    if (data.message === 'No token provided' || data.message === 'Token invalid') {
+                        setTimeout(() => {
+                            this.logout(data.message);
+                        }, 3000);
+                    }
                 } else {
                     resolve({ success: false, data: data });
                 }

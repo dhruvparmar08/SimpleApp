@@ -62,6 +62,6 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
         ]
     ),
   ],
-  providers: [],
+  providers: []
 })
 export class AuthModule { }

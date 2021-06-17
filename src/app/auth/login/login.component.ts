@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
   enable: boolean = false;
   visible: boolean = false;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private _auth: AuthService) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private _auth: AuthService, private authService: SocialAuthService) {
 
     this.login_mobile = this.fb.group({
       mobile: ['', [Validators.required]],
@@ -84,6 +86,26 @@ export class LoginComponent implements OnInit {
     } else {
       this.enable = false;
     }
+  }
+
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((res: any) => {
+      // console.log(res.response.id_token);
+      const url = "authenticate-google";
+      let data = {
+        tokenId: res.response.id_token
+      }
+
+      this._auth.API('post', url, data, false, false).then((res: any) => {
+        console.log(res);
+        if(res.data.success === true) {
+          this._auth.setToken('auth_token', res.data.token);
+          this._auth.setToken('login_type', 'Google');
+          this.router.navigate(['/main/dashboard']);
+        }
+      })
+      // this.google(res.response.id_token);
+    }, err => console.log(err))
   }
 
   forget() {

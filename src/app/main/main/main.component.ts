@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-main',
@@ -10,7 +13,32 @@ import { Router } from '@angular/router';
 export class MainComponent implements OnInit {
 
   name: string;
-  constructor(private _auth: AuthService, private router: Router) { }
+  destroyed = new Subject<void>();
+  currentScreenSize: string;
+
+  displayNameMap = new Map([
+    [Breakpoints.XSmall, 'XSmall'],
+    [Breakpoints.Small, 'Small'],
+    [Breakpoints.Medium, 'Medium'],
+    [Breakpoints.Large, 'Large'],
+    [Breakpoints.XLarge, 'XLarge'],
+  ]);
+
+  constructor(private _auth: AuthService, private router: Router, breakpointObserver: BreakpointObserver) { 
+    breakpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small,
+      Breakpoints.Medium,
+      Breakpoints.Large,
+      Breakpoints.XLarge,
+    ]).pipe(takeUntil(this.destroyed)).subscribe(result => {
+        for (const query of Object.keys(result.breakpoints)) {
+          if (result.breakpoints[query]) {
+            this.currentScreenSize = this.displayNameMap.get(query) ?? 'Unknown';
+          }
+        }
+    });
+  }
 
   ngOnInit(): void {
     this.getUserdetails();
@@ -37,7 +65,17 @@ export class MainComponent implements OnInit {
   openhome() {
     this.router.navigate(['/main/dashboard']);
   }
+
+  openuserdata() {
+    this.router.navigate(['/main/User-details']);
+  }
+
   openprofile() {
     this.router.navigate(['/main/profile']);
+  }
+
+  ngOnDestroy() {
+    this.destroyed.next();
+    this.destroyed.complete();
   }
 }

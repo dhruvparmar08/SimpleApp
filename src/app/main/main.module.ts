@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';  
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
@@ -19,16 +20,27 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatBadgeModule} from '@angular/material/badge';
+
+import {LayoutModule} from '@angular/cdk/layout';
 
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainComponent } from './main/main.component';
+import { MapComponent } from './map/map.component';
+import { MenudetailsComponent } from './menudetails/menudetails.component';
+import { MenucartComponent } from './menucart/menucart.component';
+import { CartdownloadComponent } from './cartdownload/cartdownload.component';
 
 @NgModule({
   declarations: [
     ProfileComponent,
     DashboardComponent,
-    MainComponent
+    MainComponent,
+    MapComponent,
+    MenudetailsComponent,
+    MenucartComponent,
+    CartdownloadComponent
   ],
   imports: [
     CommonModule,
@@ -42,6 +54,7 @@ import { MainComponent } from './main/main.component';
     MatSelectModule,
     MatButtonToggleModule,
     ReactiveFormsModule,
+    FormsModule,
     MatStepperModule,
     MatMenuModule,
     MatToolbarModule,
@@ -49,6 +62,8 @@ import { MainComponent } from './main/main.component';
     MatPaginatorModule,
     MatSlideToggleModule,
     MatTooltipModule,
+    MatBadgeModule,
+    LayoutModule,
     RouterModule.forChild(
         [
             {
@@ -59,13 +74,33 @@ import { MainComponent } from './main/main.component';
                 {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
                 {
                   path: 'dashboard',
-                  component: DashboardComponent,
+                  component: MenudetailsComponent,
                   pathMatch: 'full'
                 },
                 {
                     path: 'profile',
                     component: ProfileComponent,
                     pathMatch: 'full'
+                },
+                {
+                  path: 'User-details',
+                  component: DashboardComponent,
+                  pathMatch: 'full'
+                },
+                {
+                  path: 'map',
+                  component: MapComponent,
+                  pathMatch: 'full'
+                },
+                {
+                  path: 'cartnow',
+                  component: MenucartComponent,
+                  pathMatch: 'full'
+                },
+                {
+                  path: 'download',
+                  component: CartdownloadComponent,
+                  pathMatch: 'full'
                 },
                 {
                     path: '**',

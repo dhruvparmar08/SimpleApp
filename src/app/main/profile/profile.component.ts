@@ -69,7 +69,11 @@ export class ProfileComponent implements OnInit {
     const url = 'delete?_id=' + this._id;
 
     this._auth.API('delete', url, '', false).then((res :any) => {
-
+      if(res.success === true) {
+        setTimeout(() =>{
+          this._auth.logout("logging out");
+        }, 3000);
+      }
     })
   }
 

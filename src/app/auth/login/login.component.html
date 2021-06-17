@@ -19,6 +19,9 @@
                                 <mat-label>Mobile Number</mat-label>
                                 <input matInput type="number" name="mobile" placeholder="000-000-0000" formControlName="mobile">
                                 <button mat-icon-button matSuffix><mat-icon>dialpad</mat-icon></button>
+                                <mat-error *ngIf="!login_mobile.controls.mobile.valid">
+                                    Enter mobile number
+                                </mat-error>
                             </mat-form-field>
                         </div>
                         <div>
@@ -35,6 +38,9 @@
                                     visibility_off
                                 </mat-icon>
                                 </button>
+                                <mat-error *ngIf="!login_mobile.controls.password.valid">
+                                    Enter password
+                                </mat-error>
                             </mat-form-field>
                         </div>
                         <div>
@@ -53,6 +59,9 @@
                                 <mat-label>E-mail</mat-label>
                                 <input matInput name="email" placeholder="example@xyz.com" formControlName="email">
                                 <button mat-icon-button matSuffix><mat-icon>alternate_email</mat-icon></button>
+                                <mat-error *ngIf="!login_Form.controls.email.valid">
+                                    Enter E-mail Address
+                                </mat-error>
                             </mat-form-field>
                         </div>
                         <div>
@@ -69,6 +78,9 @@
                                     visibility_off
                                 </mat-icon>
                                 </button>
+                                <mat-error *ngIf="!login_Form.controls.password.valid">
+                                    Enter password
+                                </mat-error>
                             </mat-form-field>
                         </div>
                         <div>
@@ -83,6 +95,9 @@
             </div>
     </mat-card-content>
     <mat-card-actions>
+        <div id="googlebtn">
+            <button type="button" mat-raised-button style="color: #3f51b5; width: 250px;" (click)="signInWithGoogle()" > Login With Google </button>
+        </div> 
         <span>Are you new user ? &nbsp; <a [routerLink]="['/auth/register']" routerLinkActive="true">Register</a> &nbsp; now.</span>
     </mat-card-actions>
 </mat-card>

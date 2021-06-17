@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   visible: boolean = false;
 
-  constructor(private fb: FormBuilder, private _auth: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private _auth: AuthService, private router: Router, private route: ActivatedRoute) {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required, Validators.pattern(/^(([a-zA-Z]{3,20})+[ ]+([a-zA-Z]{3,20})+)+$/)]],
       email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/)], this.emailValidator.bind(this)],
@@ -36,6 +36,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.registerForm.controls['email'].patchValue(this.route.snapshot.paramMap.get('email'));
   }
 
   submit() {

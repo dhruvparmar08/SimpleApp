@@ -1,4 +1,4 @@
 {
-    "url":"http://localhost:8080/api/",
+    "url": "https://app-node-my.herokuapp.com/api/",
     "secret_key":"myFirstA@P"
 }

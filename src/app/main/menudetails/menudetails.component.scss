@@ -1,0 +1,32 @@
+.example-card {
+    max-width: 400px;
+    max-height: 250px;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+    height: 150px;
+    width: 150px;
+}
+
+.lists {
+    margin-left: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    @media screen and (max-width: 1000px) {
+        display: block;
+    }
+}
+
+.list_items {
+    margin: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+    .ls_lists {
+        display: flex;
+        justify-content: center;
+    }
+}

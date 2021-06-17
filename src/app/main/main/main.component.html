@@ -6,6 +6,7 @@
       <mat-menu #menu="matMenu">
         <button mat-menu-item matSuffix><a [routerLink]="['/main/dashboard']" routerLinkActive="true"><mat-icon>dashboard_customize</mat-icon> Dashboard</a></button>
         <button mat-menu-item matSuffix><a [routerLink]="['/main/profile']" routerLinkActive="true"><mat-icon>account_circle</mat-icon> Profile</a></button>
+        <!-- <button mat-menu-item matSuffix><a [routerLink]="['/main/User-details']" routerLinkActive="true">User-details</a></button> -->
         <button mat-menu-item matSuffix (click)="logout()"><mat-icon>logout</mat-icon> Log Out</button>
       </mat-menu>
       <span id="home" (click)="openhome()">My App</span>

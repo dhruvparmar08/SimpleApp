@@ -1,0 +1,50 @@
+#register_card {
+    width: 450px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 1px;
+}
+
+#register_details {
+    display: flex;
+    justify-content: center;
+}
+
+mat-form-field {
+    width: 50px;
+}
+
+#register_btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+mat-icon {
+    vertical-align: middle;
+}
+
+span {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    color: #ff4081;
+}
+
+a:hover, a:active, a::after {
+    color: #3f51b5;
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    text-align: center;
+}
+
+tr.mat-footer-row {
+    font-weight: 500;
+}
