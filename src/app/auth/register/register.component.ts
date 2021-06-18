@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   visible: boolean = false;
+  visible1: boolean = false;
 
   constructor(private fb: FormBuilder, private _auth: AuthService, private router: Router, private route: ActivatedRoute) {
     this.registerForm = this.fb.group({

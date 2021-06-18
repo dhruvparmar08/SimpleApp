@@ -84,14 +84,14 @@
                     <div>
                         <mat-form-field appearance="standard">
                             <mat-label>Confirm Password</mat-label>
-                            <input matInput [type]="visible ? 'text' : 'password'" name="confirmpassword" formControlName="confirmpassword">
+                            <input matInput [type]="visible1 ? 'text' : 'password'" name="confirmpassword" formControlName="confirmpassword">
                             <button type="button" mat-icon-button matSuffix
-                              (click)="visible = !visible"
+                              (click)="visible1 = !visible1"
                               matTooltip="Toggle Visibility">
-                              <mat-icon *ngIf="visible">
+                              <mat-icon *ngIf="visible1">
                                 visibility
                               </mat-icon>
-                              <mat-icon *ngIf="!visible">
+                              <mat-icon *ngIf="!visible1">
                                 visibility_off
                               </mat-icon>
                             </button>
