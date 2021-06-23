@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
       gender: ['', Validators.required],
       address: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])(?=.*?[\W]).{8,35}$/)]],
-      confirmpassword: ['', [Validators.required, passwordMatchValidator('password')]]
+      // confirmpassword: ['', [Validators.required, passwordMatchValidator('password')]]
     })
   }
 
