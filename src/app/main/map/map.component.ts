@@ -9,6 +9,9 @@ export class MapComponent implements OnInit {
 
   constructor() { }
 
+  lat: number = 23.091130;
+  lng: number = 72.512510;
+
   ngOnInit(): void {
   }
 

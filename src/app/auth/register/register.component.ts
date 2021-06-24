@@ -38,6 +38,14 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm.controls['email'].patchValue(this.route.snapshot.paramMap.get('email'));
+    let email = this._auth.getToken('email');
+    let name = this._auth.getToken('name');
+    if(name && email) {
+      this.registerForm.patchValue({
+        name : name,
+        email : email
+      })
+    }
   }
 
   submit() {
@@ -59,7 +67,15 @@ export class RegisterComponent implements OnInit {
         if(res.success == true) {
           if(res.data.success === true) {
             this.registerForm.reset();
-            this.router.navigate(['/auth/login']);
+            
+            this._auth.alertPopUp('success', res.data.message);
+            
+            setTimeout(() => {
+              this.router.navigate(['/auth/login']);
+            }, 3000);
+  
+            this._auth.removeToken('name');
+            this._auth.removeToken('email');
           }
         }
       })

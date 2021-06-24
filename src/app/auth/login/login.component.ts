@@ -69,6 +69,7 @@ export class LoginComponent implements OnInit {
           if(res.data.success === true) {
             this._auth.setToken('auth_token', res.data.token);
             this.router.navigate(['/main/dashboard']);
+            this._auth.alertPopUp('success', res.data.message);
           }
         }
       })
@@ -101,7 +102,14 @@ export class LoginComponent implements OnInit {
         if(res.data.success === true) {
           this._auth.setToken('auth_token', res.data.token);
           this._auth.setToken('login_type', 'Google');
-          this.router.navigate(['/main/dashboard']);
+          this._auth.alertPopUp('success', res.data.message);
+          setTimeout(() => {
+            this.router.navigate(['/main/dashboard']);
+          }, 3000);
+        } else {
+          this._auth.setToken('name', res.data.data.name);
+          this._auth.setToken('email', res.data.data.email);
+          this.router.navigate(['/auth/register']);
         }
       })
       // this.google(res.response.id_token);

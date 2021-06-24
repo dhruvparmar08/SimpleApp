@@ -1,1 +1,9 @@
-<p>map works!</p>
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng">
+    <agm-info-window>
+      <h3><strong>Restuarant</strong></h3>
+      <p>Location : Ahmedabad</p>
+      <p>Contact US : Working</p>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>

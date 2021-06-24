@@ -19,6 +19,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     SocialLoginModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    NgbModule
+    NgbModule,
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyCFBIK2kbkGnAr5hnBSuOU5QFcMIAE4rhQ'
+    // }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

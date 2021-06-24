@@ -116,16 +116,20 @@ export class AuthService {
             this.showloader();
             this.http.post(this.url, data, { headers }).subscribe((data: any) => {
                 this.hideloader();
-                if (data.success) {
+                if (data.success == true) {
                     resolve({ success: true, data: data });
+                    // this.alertPopUp('success', data.message);
                 } else if (data.success === false) {
-                    resolve({ success: false, data: data });
-                    this.alertPopUp('error', data.message);
-
-                    if (data.message === 'No token provided' || data.message === 'Token invalid') {
+                    if(data.auth == "google") {
+                        resolve({ success: false, data: data });
+                        return;
+                    } else if (data.message === 'No token provided' || data.message === 'Token invalid') {
                         setTimeout(() => {
                             this.logout(data.message);
                         }, 3000);
+                    } else {
+                        resolve({ success: false, data: data });
+                        this.alertPopUp('error', data.message);
                     }
                 } else {
                     resolve({ success: false, data: data });
@@ -142,6 +146,7 @@ export class AuthService {
                 if (data.success === true) {
                     this.alertPopUp('success', data.message);
                       resolve({ success: true, data: data });
+                      this.alertPopUp('success', data.message);
                 } else if (data.success === false) {
                     this.alertPopUp('error', data.message);
 
