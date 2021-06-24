@@ -23,7 +23,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatBadgeModule} from '@angular/material/badge';
 
 import {LayoutModule} from '@angular/cdk/layout';
-import { AgmCoreModule } from '@agm/core';
+// import { AgmCoreModule } from '@agm/core';
 
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -65,9 +65,9 @@ import { CartdownloadComponent } from './cartdownload/cartdownload.component';
     MatTooltipModule,
     MatBadgeModule,
     LayoutModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCFBIK2kbkGnAr5hnBSuOU5QFcMIAE4rhQ'
-    }),
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyCFBIK2kbkGnAr5hnBSuOU5QFcMIAE4rhQ'
+    // }),
     RouterModule.forChild(
         [
             {
