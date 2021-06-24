@@ -63,10 +63,10 @@ export class LoginComponent implements OnInit {
       const url = "authenticate";
 
       this._auth.API('post', url, data, false, false).then((res: any)=> {
-        this.reset();
         this._auth.showloader();
         if(res.success === true) {
           if(res.data.success === true) {
+            this.reset();
             this._auth.setToken('auth_token', res.data.token);
             this.router.navigate(['/main/dashboard']);
             this._auth.alertPopUp('success', res.data.message);
