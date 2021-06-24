@@ -68,7 +68,9 @@ export class LoginComponent implements OnInit {
           if(res.data.success === true) {
             this.reset();
             this._auth.setToken('auth_token', res.data.token);
-            this.router.navigate(['/main/dashboard']);
+            setTimeout(() => {
+              this.router.navigate(['/main/dashboard']);
+            }, 2000)
             this._auth.alertPopUp('success', res.data.message);
           }
         }
