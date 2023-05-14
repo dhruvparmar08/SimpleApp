@@ -8,7 +8,7 @@
                 <div>
                     <div>
                         <mat-form-field appearance="standard">
-                            <mat-label>Name</mat-label>
+                            <mat-label>Name *</mat-label>
                             <input matInput type="text" name="name" placeholder="xyz abc" formControlName="name">
                             <!-- <button mat-icon-button matSuffix><mat-icon>people</mat-icon></button> -->
                             <mat-error *ngIf="!registerForm.controls.name.valid">
@@ -18,7 +18,7 @@
                     </div>
                     <div>
                         <mat-form-field appearance="standard">
-                            <mat-label>E-mail</mat-label>
+                            <mat-label>E-mail *</mat-label>
                             <input matInput type="text" name="email" placeholder="example@xyz.com" formControlName="email">
                             <!-- <button mat-icon-button matSuffix><mat-icon>alternate_email</mat-icon></button> -->
                             <mat-error *ngIf="!registerForm.controls.email.valid">
@@ -29,7 +29,7 @@
                     </div>
                     <div>
                         <mat-form-field appearance="standard">
-                            <mat-label>Mobile Number</mat-label>
+                            <mat-label>Mobile Number *</mat-label>
                             <input matInput type="number" name="mobile" placeholder="000-000-0000" formControlName="mobile">
                             <!-- <button mat-icon-button matSuffix><mat-icon>dialpad</mat-icon></button> -->
                             <mat-error *ngIf="!registerForm.controls.mobile.valid">
@@ -40,7 +40,7 @@
                     </div>
                     <div>
                         <mat-form-field appearance="standard">
-                            <mat-label>Select your gender</mat-label>
+                            <mat-label>Select your gender *</mat-label>
                             <mat-select name="gender" formControlName="gender">
                                 <mat-option value="" disabled>Select your gender</mat-option>
                                 <mat-option value="male">Male </mat-option>
@@ -54,7 +54,7 @@
                     </div>
                     <div>
                         <mat-form-field appearance="standard">
-                            <mat-label>Address</mat-label>
+                            <mat-label>Address *</mat-label>
                             <textarea id="textarea" matInput name="address" formControlName="address"></textarea>
                             <!-- <button mat-icon-button matSuffix><mat-icon>home</mat-icon></button> -->
                             <mat-error *ngIf="!registerForm.controls.address.valid">
@@ -64,7 +64,7 @@
                     </div>
                     <div>
                         <mat-form-field appearance="standard">
-                            <mat-label>Password</mat-label>
+                            <mat-label>Password *</mat-label>
                             <input matInput [type]="visible ? 'text' : 'password'" name="password" formControlName="password">
                             <button type="button" mat-icon-button matSuffix
                               (click)="visible = !visible"
@@ -81,9 +81,9 @@
                             </mat-error>
                         </mat-form-field>
                     </div>
-                    <!-- <div>
+                    <div>
                         <mat-form-field appearance="standard">
-                            <mat-label>Confirm Password</mat-label>
+                            <mat-label>Confirm Password *</mat-label>
                             <input matInput [type]="visible1 ? 'text' : 'password'" name="confirmpassword" formControlName="confirmpassword">
                             <button type="button" mat-icon-button matSuffix
                               (click)="visible1 = !visible1"
@@ -96,11 +96,11 @@
                               </mat-icon>
                             </button>
                             <mat-error *ngIf="!registerForm.controls.confirmpassword.valid">
-                                <p *ngIf="registerForm.controls.confirmpassword.errors.required">Enter Valid Password</p>
+                                <p *ngIf="registerForm.controls.confirmpassword.errors.required">Enter Valid Confirm Password</p>
                                 <p *ngIf="registerForm.controls.confirmpassword.errors.mismatch">Password not match</p>
                             </mat-error>
                         </mat-form-field>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </mat-card-content>

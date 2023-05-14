@@ -40,7 +40,10 @@ export class ForgetPasswordComponent implements OnInit {
       this._auth.API('put', url, data, false).then((res: any)=> {
         console.log(res);
         if(res.success === true) {
-          this.router.navigate(['/auth/login']);
+          this._auth.alertPopUp('success', res.data.message);
+          setTimeout(() => {
+            this.router.navigate(['/auth/login']);
+          }, 1500);
         }
       })
     }
@@ -52,16 +55,14 @@ export class ForgetPasswordComponent implements OnInit {
         email: this.firstFormGroup.controls['email'].value
       }
 
-      const url = 'checkemail';
+      const url = 'checkemailaddress';
 
       this._auth.API('post', url, data, false, false).then((res: any) => {
         console.log(res);
         if(res.success === true) {
-          if(res.success === true) {
-            alert("E-mail not exits");
 
-            this.router.navigate(['/auth/register']);
-          }
+        } else {
+          this.router.navigate(['/auth/login']);
         }
       })
     }

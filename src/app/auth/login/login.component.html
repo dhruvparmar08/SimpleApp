@@ -18,7 +18,7 @@
                             <mat-form-field appearance="standard">
                                 <mat-label>Mobile Number</mat-label>
                                 <input matInput type="number" name="mobile" placeholder="000-000-0000" formControlName="mobile">
-                                <button mat-icon-button matSuffix><mat-icon>dialpad</mat-icon></button>
+                                <!-- <button mat-icon-button matSuffix><mat-icon>dialpad</mat-icon></button> -->
                                 <mat-error *ngIf="!login_mobile.controls.mobile.valid">
                                     Enter mobile number
                                 </mat-error>
@@ -54,7 +54,7 @@
                             <mat-form-field appearance="standard">
                                 <mat-label>E-mail</mat-label>
                                 <input matInput name="email" placeholder="example@xyz.com" formControlName="email">
-                                <mat-icon matSuffix>alternate_email</mat-icon>
+                                <!-- <mat-icon matSuffix>alternate_email</mat-icon> -->
                                 <mat-error *ngIf="!login_Form.controls.email.valid">
                                     Enter E-mail Address
                                 </mat-error>

@@ -47,10 +47,14 @@ export class MenucartComponent implements OnInit {
   }
 
   order() {
-    this._auth.alertPopUp('success', 'Your Bill has been download momentary');
-    setTimeout(()=> {
-      this.generarPDF();
-    }, 2000);
+    if(this.length > 0) {
+      this._auth.alertPopUp('success', 'Your Bill has been download momentary');
+      setTimeout(()=> {
+        this.generarPDF();
+      }, 2000);
+    } else {
+      this._auth.alertPopUp('error', 'Order cart is empty!');
+    }
     setTimeout(()=> {
       this.router.navigate(['/main/dashboard']);
     }, 2500);
