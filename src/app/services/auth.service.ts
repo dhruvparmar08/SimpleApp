@@ -1,12 +1,18 @@
 import { Injectable, Injector, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import * as CryptoJS from 'crypto-js';
-import  * as config from 'configuration.json';
+// import  * as config from 'configuration.json';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import Swal from 'sweetalert2';  
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SocialAuthService } from "angularx-social-login";
+
+let config = {
+    url: environment.url,
+    secret_key: environment.secret_key
+};
 
 @Injectable({
   providedIn: 'root'
